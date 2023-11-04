@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -30,13 +31,11 @@ const productSchema = new mongoose.Schema(
       data: Buffer,
       contentType: String,
     },
-    shipping:{
-        type:Boolean,
-    }
+    shipping: {
+      type: Boolean,
+    },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 export default mongoose.model("Products", productSchema);
