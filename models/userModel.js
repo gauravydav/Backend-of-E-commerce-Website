@@ -32,6 +32,20 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    cart: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Products', // Reference to the Product model
+        },
+        quantity: {
+          type: Number,
+          required: true,
+          default: 1, // Default quantity when adding to cart
+        },
+      },
+    ],
+
   },
   { timestamps: true }
 );

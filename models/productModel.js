@@ -6,10 +6,12 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
     slug: {
       type: String,
       required: true,
     },
+    
     description: {
       type: String,
       required: true,
@@ -19,7 +21,7 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     category: {
-      type: mongoose.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required: true,
     },

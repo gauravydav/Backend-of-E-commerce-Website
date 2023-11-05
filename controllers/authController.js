@@ -156,15 +156,8 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
-// //test controller
-export const testController = (req, res) => {
-  try {
-    res.send("Protected Routes");
-  } catch (error) {
-    console.log(error);
-    res.send({ error });
-  }
-};
+
+
 
 // //update prfole
  export const updateProfileController = async (req, res) => {
@@ -257,3 +250,46 @@ export const orderStatusController = async (req, res) => {
     });
   }
 };
+
+
+export const getOrderById = async (req, res) => {
+  try {
+    const orderId = req.params.orderId;
+    const order = await orderModel.findById(orderId).populate('products buyer');
+
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    res.json(order);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const placeOrder = async (req, res) => {
+  try {
+    // Extract the order data from the request body
+    const { products, buyer } = req.body;
+
+    // Create a new order
+    const newOrder = new orderModel({
+      products,
+      
+      buyer,
+      status: 'Not Process', // You can set the initial status here
+    });
+
+    // Save the new order to the database
+    const savedOrder = await newOrder.save();
+
+    res.json(savedOrder);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+//module.exports = { placeOrder };
+//module.exports = { getOrderById };
