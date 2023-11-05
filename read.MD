@@ -4,20 +4,22 @@ register,
 login,
 updateProfile,
 forgotPassword,
+
+Api:for orders 
 getOrders,
 getAllOrders,
 orderStatus,
 getOrderById,
 placeOrder
 
-Api:for product details
+Api:for category details
 category,
 createCategory,
 deleteCategory,
 singleCategory,
 updateCategory
 
-Api: for category details
+Api: for product details
 createProduct,
 deleteProduct,
 getProduct,
